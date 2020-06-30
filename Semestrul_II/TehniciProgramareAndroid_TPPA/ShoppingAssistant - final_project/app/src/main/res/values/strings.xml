@@ -1,0 +1,59 @@
+<resources>
+    <string name="app_name">Shopping Assistant</string>
+
+    <string name="amount_type_hint">Type</string>
+
+    <string-array name="ItemType">
+        <item>Other</item>
+        <item>Fruits &amp; Vegetables</item>
+        <item>Diary</item>
+        <item>Beauty &amp; Skincare</item>
+        <item>Books</item>
+        <item>Meat &amp; Seafood</item>
+        <item>Cleaning</item>
+        <item>Beverages</item>
+        <item>Pets</item>
+        <item>Kids</item>
+        <item>Bread &amp; Cereal</item>
+        <item>Condiments &amp; Spices</item>
+        <item>Pasta &amp; Rice</item>
+        <item>Baking</item>
+        <item>Snacks</item>
+        <item>Health</item>
+        <item>Household</item>
+    </string-array>
+
+    <!-- contains the All category too -->
+    <string-array name="TypeForFilter">
+        <item>All</item>
+        <item>Other</item>
+        <item>Fruits &amp; Vegetables</item>
+        <item>Diary</item>
+        <item>Beauty &amp; Skincare</item>
+        <item>Books</item>
+        <item>Meat &amp; Seafood</item>
+        <item>Cleaning</item>
+        <item>Beverages</item>
+        <item>Pets</item>
+        <item>Kids</item>
+        <item>Bread &amp; Cereal</item>
+        <item>Condiments &amp; Spices</item>
+        <item>Pasta &amp; Rice</item>
+        <item>Baking</item>
+        <item>Snacks</item>
+        <item>Health</item>
+        <item>Household</item>
+    </string-array>
+
+    <string-array name="amountTypes">
+        <item>Type</item>
+        <item>litres</item>
+        <item>ml</item>
+        <item>grams</item>
+        <item>kg</item>
+        <item>boxes</item>
+        <item>tablets</item>
+        <item>Other</item>
+    </string-array>
+
+</resources>

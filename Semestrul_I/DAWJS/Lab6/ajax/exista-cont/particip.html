@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ro" xml:lang="ro">
+<head>
+<title>A new participant</title>
+<style type="text/css">
+input[type="text"]:focus {
+  background: #EEE;
+  border-color: black;
+}
+input {
+  width: 20em;
+  padding: 0.3em;
+}
+div {
+  margin-top: 0.3em;
+}
+label {
+  display: block;
+}
+.err { /* stiluri pentru mesajul de eroare */
+  display: inline;
+  color: red;
+  background-color: yellow;
+  font-family: sans-serif;
+}
+.hidden { /* stiluri pentru ascunderea mesajului */
+  display: none;
+}
+#content {
+  margin: 0px auto;
+  width: 600px;
+}
+</style>
+<!-- programul JavaScript realizand 
+     incarcarea asincrona a datelor XML (via Ajax) -->
+<script type="text/javascript">
+var request; // incapsuleaza cererea HTTP catre serverul Web
+
+// incarca un document XML desemnat de 'url'
+function loadXML (url) {
+  // verificam existenta obiectului XMLHttpRequest
+  if (window.XMLHttpRequest) { 
+  	 // exista suport nativ
+     request = new XMLHttpRequest ();
+  }
+  else 
+     if (window.ActiveXObject) {   
+  	 	// se poate folosi obiectul ActiveX din vechiul MSIE
+  	 	request = new ActiveXObject ("Microsoft.XMLHTTP");
+  	 }
+
+  if (request) {	
+     // stabilim functia de tratare a starii incarcarii
+     request.onreadystatechange = handleResponse;
+     // preluam documentul prin metoda GET
+     request.open ("GET", url, true);
+     request.send (null);
+  } else {
+  	 // nu exista suport pentru Ajax
+  	 console.log ('No Ajax support :(');
+  }
+}
+
+// functia de tratare a schimbarii de stare a cererii
+function handleResponse () {
+	// verificam daca incarcarea s-a terminat cu succes
+	if (request.readyState == 4) {
+		 // verificam daca am obtinut codul de stare '200 Ok'
+		 if (request.status == 200) {
+		 	  // procesam datele receptionate prin DOM
+		 	  // (preluam elementul radacina al documentului XML)
+		 	  var response = request.responseXML.documentElement;
+		 	  var res = response.getElementsByTagName('result')[0].firstChild.data;
+		 	  // apelam functia de semnalare a (in)existentei numelui
+		 	  signalNameExists ('', res);
+		 }
+		 // eventual, se pot trata si alte coduri HTTP (404, 500 etc.)
+		 else { // eroare...
+		 	  console.log ("A problem occurred (XML data transfer):\n" +
+		 	    response.statusText);
+		 }
+	} // final de if
+}
+
+// functia de semnalare a existentei unui nume de persoana
+function signalNameExists (name, exist) {
+	// avem un raspuns?
+	if (exist != '') {
+		 // preluam via metodele DOM elementul cu id='eroareNume'
+		 // pentru a afisa mesajul de eroare
+		 var msg = document.getElementById ('errName');
+		 // schimbam stilul de afisare (in caz de eroare vor fi aplicate
+		 // proprietatile de stil din clasa 'eroare',
+		 // altfel textul va fi ascuns)
+		 msg.className = exist == 1 ? 'err' : 'hidden';
+	} else {
+		 // nu e niciun raspuns stabilit, vom verifica asincron
+		 // trimitand o cerere catre server
+		 loadXML ('verify.php?name=' + name);
+	}
+}
+</script>
+</head>
+<body>
+<article id="content">
+  <h1>A new participant</h1>
+
+  <form action="add.php" method="post">
+     <div>
+        <label for="name">Account name:</label>
+        <input type="text" name="name" id="name"
+               placeholder="Enter the desired account name"
+               onblur="javascript:signalNameExists (this.value, '')" />
+        <!-- mesaj initial ascuns -->
+        <span class="hidden" id="errName">
+           Name already exists, choose another one...
+        </span>
+     </div>
+
+     <div>
+        <label for="adr">Address:</label>
+        <input type="text" name="adr" id="adr"
+               placeholder="Your address (e-mail or URI)" />
+     </div>
+
+     <div>
+        <input type="button" value="Apply"
+               onclick="javascript:alert('To be implemented (homework).')" 
+               title="Click or tap to send data" />
+     </div>
+  </form>
+</article>
+</body>
+</html>

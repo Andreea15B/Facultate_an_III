@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Preluare meta-date</title>
+<meta charset="utf-8" />
+</head>
+<body>
+<script type="text/javascript">
+const URL = "https://profs.info.uaic.ro/~busaco/teach/courses/web/";
+
+// realizăm o cerere HEAD pentru a obține meta-date despre o resursă
+let client = new XMLHttpRequest ();
+client.open ("HEAD", URL, true);
+client.send ();
+
+client.onreadystatechange = () => {
+  // am recepționat câmpurile-antet?
+  if (client.readyState == 2) {
+    // semnalăm tipul MIME și data ultimei actualizări
+    alert ("Resursa de tip '" + client.getResponseHeader ("Content-Type") + "' s-a actualizat la " + client.getResponseHeader ("Last-Modified"));
+  }
+}
+</script>
+</body>
+</html>

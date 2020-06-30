@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ro">
+<!-- Varianta online e disponibila la adresa Web
+     http://jsfiddle.net/busaco/2254kdqn/
+-->     
+<head>
+<title>RandomAjax</title>
+<style type="text/css">
+#numere {
+    font-family: sans-serif;
+    font-size: 1em;
+    width: 20em;
+}
+</style>
+</head>
+<body>
+<div id="numere">[Va rugam, asteptati...]</div>
+
+<script type="text/javascript">
+// un program JS ce preia asincron o secventa de numere aleatoare produsa de random.org
+const URL = 'https://www.random.org/sequences/?min=1&max=50&col=1&format=plain&rnd=new';
+const TIMP = 2000;
+
+let numere = document.getElementById('numere');
+
+try { // incercam sa instantiem obiectul XMLHttpRequest
+    var xhr = new XMLHttpRequest();
+} catch (e) {
+    numere.textContent = 'Eroare la instantierea obiectului XMLHttpRequest ' + e.message;
+} finally {
+    // eveniment de tratare a expirarii timpului de asteptare
+    xhr.ontimeout = function () {
+        numere.textContent = 'Timpul a expirat... :(';
+    };
+    // eveniment de tratare a preluarii datelor solicitate unui serviciu
+    xhr.onload = function () {
+        if (xhr.readyState === 4) { // am primit datele
+            if (xhr.status === 200) { // raspuns Ok din partea serverului
+                // inlocuim spatiile albe cu virgula si plasam continutul in cadrul
+                // elementului HTML identificat prin 'numere'
+                numere.textContent = xhr.responseText.trim().replace(/\W+/g, ', ');
+            } else {
+                numere.textContent = 'A survenit o eroare: ' + xhr.statusText;
+            }
+        }
+    };
+    xhr.open("GET", URL, true); // deschidem conexiunea
+    xhr.timeout = TIMP; // stabilim timpul maxim de asteptare a raspunsului
+    xhr.send(null); // trimitem cererea HTTP (nu expediem date)
+}
+</script>
+</body>
+</html>

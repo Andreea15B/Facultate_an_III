@@ -1,0 +1,2 @@
+Sa se creeze o clasa pentru gestiunea (CRUD) expresiilor regulate, inclusiv cu posibilitatea verificarii corectitudinii, evaluarii si stocarii. 
+Vor fi furnizate minim 2 exemple de utilizare practica. Implementarea va recurge la minim un obiect Promise, justificandu-i-se rolul.

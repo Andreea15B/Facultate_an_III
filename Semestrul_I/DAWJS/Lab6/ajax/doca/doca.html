@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Mash-up Web: Dogs and Cats</title>
+<style>
+img {
+  width: 200px;
+}
+</style>
+</head>
+<body>
+<div><span id="dog"></span> vs <span id="cat"></span></div>
+
+<script type="application/javascript">
+// verificăm dacă avem succes (codul de stare e 2XX)
+// pe baza unei promisiuni
+function status(response) {
+  if (response.status >= 200 && response.status < 300) {
+    // cererea poate fi rezolvată
+    return Promise.resolve(response)
+  } else {
+    // cererea a fost rejectată
+    return Promise.reject(new Error(response.statusText))
+  }
+}
+
+// generăm în cadrul unui element identificat prin 'id'
+// elementul <img /> pentru a include URL-ul fotografiei 
+// (parametrul 'url' dat funcției) ce reprezintă un animal
+function genImg(url, id) {
+  const elem = document.createElement('img');
+  elem.setAttribute('src', url);
+  document.getElementById(id).appendChild(elem);
+}
+
+const URLDOGS = 'https://dog.ceo/api/breed/dalmatian/images/random';
+const URLCATS = 'https://aws.random.cat/meow';
+
+// folosim Dog API pentru a obține o imagine aleatorie
+// a unui câine dalmațian
+fetch(URLDOGS)
+  .then(status) // datele au fost recepționate cu succes?
+  .then(response => response.json())
+  .then(json => {
+    // procesăm datele JSON primite...
+    // proprietatea 'message' stochează URL-ul imaginii câinelui
+    genImg(json.message, 'dog');
+  })
+  .catch(error => { // redăm eroarea survenită
+    document.getElementById('dog').textContent = error;
+  });
+
+// invocăm random.cat API pentru a obține 
+// fotografia unei/unor pisici 
+fetch(URLCATS)
+  .then(status) // datele au fost recepționate cu succes?
+  .then(response => response.json())
+  .then(json => {
+    // procesăm datele JSON primite...
+    // proprietatea 'file' stochează URL-ul fotografiei cu pisici
+    genImg(json.file, 'cat');
+  })
+  .catch(error => { // redăm eroarea survenită
+    document.getElementById('cat').textContent = error;
+  });
+</script>
+</body>
+</html>

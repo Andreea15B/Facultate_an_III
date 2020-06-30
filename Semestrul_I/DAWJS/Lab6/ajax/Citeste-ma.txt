@@ -1,0 +1,53 @@
+Se exemplifica maniera de realizare de transferuri asincrone via Ajax 
+pe baza XMLHttpRequest() si fetch() -- specific HTML5.
+
+Directorul exista-cont/ include un exemplu de verificare a existentei 
+unui utilizator la momentul inscrierii via un formular Web:
+* inscriere.html        - document HTML5 folosit la inscrierea unui participant 
+                          la un concurs; se verifica prin Ajax daca un nume de 
+                          cont deja exista
+* participanti.xml      - fisierul XML (stocat pe server) continand date
+						  despre participantii deja inscrisi
+* verifica.php          - program PHP care verifica existenta unui nume de cont 
+                          prin procesarea documentului 'participanti.xml'
+						  pe baza prelucrarii simplificate (Simple XML)
+
+Directorul numere/ include un exemplu de utilizare a obiectului XMLHttpRequest 
+pentru a prelua o secventa de numere aleatoare furnizate de random.org:
+* random.html			- document HTML5 ce recurge la JavaScript ca sa obtina 
+						  asincron o secventa de numere aleatoare produsa de random.org
+						  (intr-un timp dat); varianta online poate fi studiata la
+						  <https://jsfiddle.net/busaco/2254kdqn/> -- versiunea folosind Fetch API
+                          e disponibila la <https://jsfiddle.net/busaco/a2q9regd/> 
+
+Directorul post-json/ exemplifica vehicularea datelor JSON prin POST recurgand la Fetch API: 
+preluarea tastelor actionate de utilizator (tratarea evenimentului "keypress") si 
+expedierea lor unei aplicatii Web rulate pe un server care le retrimite clientului
+* post-chars.html       - document HTML5 incluzand cod JavaScript pentru 
+                          transferul asincron de date JSON
+* post.php              - program PHP care preia date JSON transmise prin POST de client
+                          si le trimite inapoi (echo)                           
+
+Directorul metadate/ ilustreaza obtinerea de meta-date privitoare la o resursa
+via o cerere HEAD si posibila eludare a politicii de acces (Same-Origin Policy):
+* ajax-head.html        - obtinerea tipului MIME si a datei ultimei actualizari 
+                          a unei resurse via HEAD; de activat consola browser-ului
+                          pentru a studia mesajele semnalate 
+
+Directorul doca/ ofera implementarea unui mash-up Web la nivel de client:
+se preiau concurent imagini despre canine si feline (DoCa -- Dogs & Cats)
+furnizate de doua API-uri publice
+* doca.html             - include codul-sursa ES6 al mash-up-ului 
+                          realizat pe baza Fetch API -- varianta online e disponibila
+                          la <http://jsfiddle.net/busaco/z2f3vp4m/> 
+
+Alte exemple sunt disponibile online:
+GenWebForm -- https://jsfiddle.net/busaco/0wvn3fha/
+RandomAjax -- https://jsfiddle.net/busaco/2254kdqn/
+
+Toate aceste fisiere au fost scrise de Sabin-Corneliu Buraga
+(2003-2007, 2009, 2012-2015, 2017, 2019), putand fi utilizate conform
+Creative Commons Attribution-NonCommercial-ShareAlike:
+https://creativecommons.org/licenses/
+
+Ultima actualizare: 07 noiembrie 2019

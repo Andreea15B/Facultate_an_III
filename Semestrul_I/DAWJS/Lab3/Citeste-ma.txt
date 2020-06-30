@@ -1,0 +1,35 @@
+Acest director include o serie de exemple de 
+programe JavaScript -- versiunile moderne ECMAScript 2015,...,2019.
+
+Alte detalii sunt disponibile in prezentarea despre ES6 et al. 
+din cadrul materiei "Full-Stack Web Development:
+https://profs.info.uaic.ro/~busaco/teach/courses/staw/web-film.html
+
+* clase-es6.js   -- exemplifica maniera de specificare a claselor, 
+                    inclusiv mostenirea, in ES6 (ECMAScript 2015)
+* concatenare.js -- utilizarea operatorului ... (spread/rest parameters)
+                    + suportul pentru caractere Unicode                       
+* destructurare.js -- exemple privind utilizarea destructurarii in ES6
+* macheta.js     -- folosirea machetelor de substitutie a valorilor 
+                    (template literals)
+* functii-arrow.js -- utilizarea functiilor anonime declarate succint (arrow functions)
+* iteratori.js   -- iteratori pentru a genera secvente infinite de valori in ES6
+* generatori.js  -- un exemplu de utilizare a generatorilor
+* generatori-fibonacci.js -- generarea numerelor lui Fibonacci 
+                             pe baza generatorilor ES6
+* tipul-symbol.js -- utilizarea tipului de date Symbol
+* tipul-map.js   -- ilustrarea folosirii instantelor de tip Map
+* tablouri-cu-tip.js -- exemplu privind tablourile cu tip (typed arrays)
+* devstsd.js     -- calculul deviatiei standard via operatorul '**' oferit de ES7
+                    adaptare dupa https://github.com/30-seconds/30-seconds-of-code                    
+* functii-asincrone.js -- utilizarea functiilor asincrone oferite de ES8
+* prop-es9.js    -- ilustreaza operatorul ... in contextul proprietatilor obiectelor
+				    (object spread/rest properties) disponibil incepand cu
+				    versiunea ES9 (ECMAScript 2018)
+* aplatizare-tablou.js -- exemplificarea folosirii metodelor flat() si flatMap()
+                          specificate de ECMAScript 2019				    
+
+Pentru experimentare, recomandam utilizarea mediului JS Bin <https://jsbin.com/?js,console>
+(de selectat ca interpretor 'ES6 / Babel').
+
+Ultima actualizare: 17 octombrie 2019

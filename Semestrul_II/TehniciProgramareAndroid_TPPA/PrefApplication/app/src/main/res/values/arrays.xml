@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="updateInterval">
+        <item>5 minutes</item>
+        <item>10 minutes</item>
+        <item>30 minutes</item>
+    </string-array>
+    <string-array name="updateIntervalValues">
+        <item>5</item>
+        <item>10</item>
+        <item>30</item>
+    </string-array>
+
+    <string-array name="colors">
+        <item>White</item>
+        <item>Blue</item>
+        <item>Green</item>
+    </string-array>
+    <string-array name="colorValues">
+        <item>white</item>
+        <item>blue</item>
+        <item>green</item>
+    </string-array>
+</resources>

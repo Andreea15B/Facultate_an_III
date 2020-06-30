@@ -1,0 +1,74 @@
+SELECT * FROM studenti NATURAL JOIN note; ---> cauta coloanele cu acelasi nume
+SELECT table_name from user_tables; ---> afiseaza numele tuturor tabelelor
+
+describe profesori;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID_PROF                                            CHAR(4)
+ NUME                                               CHAR(10)
+ PRENUME                                            CHAR(10)
+ GRAD_DIDACTIC                                      VARCHAR2(5)
+ 
+describe didactic;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID_PROF                                            CHAR(4)
+ ID_CURS                                            CHAR(4)
+ 
+describe note;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NR_MATRICOL                                        CHAR(4)
+ ID_CURS                                            CHAR(2)
+ VALOARE                                            NUMBER(2)
+ DATA_NOTARE                                        DATE
+
+describe studenti;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NR_MATRICOL                               NOT NULL CHAR(4)
+ NUME                                               VARCHAR2(10)
+ PRENUME                                            VARCHAR2(10)
+ AN                                                 NUMBER(1)
+ GRUPA                                              CHAR(2)
+ BURSA                                              NUMBER(6,2)
+ DATA_NASTERE                                       DATE
+
+describe cursuri;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID_CURS                                   NOT NULL CHAR(2)
+ TITLU_CURS                                         VARCHAR2(15)
+ AN                                                 NUMBER(1)
+ SEMESTRU                                           NUMBER(1)
+ CREDITE                                            NUMBER(2)
+
+1.
+SELECT s.nume, s.prenume, valoare, p.nume FROM studenti s NATURAL JOIN note n JOIN didactic d ON n.id_curs = d.id_curs JOIN profesori p ON d.id_prof = p.id_prof;
+
+2.
+select s.nume from studenti s natural join note n join cursuri c on n.id_curs = c.id_curs where n.valoare = 10 and c.titlu_curs = 'BD';
+
+3.
+select p.nume, p.prenume, c.titlu_curs from profesori p NATURAL JOIN didactic d NATURAL JOIN cursuri c;
+
+4.
+select p.nume, p.prenume, c.titlu_curs from profesori p LEFT OUTER JOIN didactic d ON p.id_prof = d.id_prof LEFT OUTER JOIN cursuri c ON d.id_curs = c.id_curs;
+
+5.
+select c.titlu_curs, p.id_prof from cursuri c LEFT OUTER JOIN didactic d ON d.id_curs = c.id_curs LEFT OUTER JOIN profesori p ON d.id_prof = p.id_prof
+
+6.
+select p.nume, c.titlu_curs from profesori p FULL OUTER JOIN didactic d ON p.id_prof = d.id_prof FULL OUTER JOIN cursuri c ON d.id_curs = c.id_curs;
+
+7.
+SELECT DISTINCT s1.nume, s2.nume, TO_CHAR(s1.data_nastere,'day') FROM studenti s1 JOIN studenti s2 ON s1.nr_matricol < s2.nr_matricol 
+WHERE TO_CHAR(s1.data_nastere,'day') = TO_CHAR(s2.data_nastere,'day') and s1.nume != s2.nume ORDER BY TO_CHAR(s1.data_nastere,'day');
+
+8.
+select s1.nume || ' a luat nota mai mare decat ' || s2.nume || ' la materia ' || c.titlu_curs FROM studenti s1 JOIN studenti s2 ON s1.nr_matricol <> s2.nr_matricol 
+JOIN note n1 ON n1.nr_matricol = s1.nr_matricol JOIN cursuri c ON c.id_curs = n1.id_curs JOIN note n2 ON s2.nr_matricol = n2.nr_matricol AND n2.id_curs = c.id_curs 
+WHERE n1.valoare > n2.valoare;
+
+
+

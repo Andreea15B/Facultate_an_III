@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head>
+<title>Tratarea evenimentelor in JavaScript</title>
+<meta charset="utf-8" />
+<script type="text/javascript">
+function schimbaFont (eveniment) {			// modifica marimea fontului via DOM
+	var div = document.getElementById ("text");
+	div.setAttribute ("style", "font-size: +200%; color: blue; cursor: wait");  
+}
+function revineLaFontInitial (eveniment) {	// revine la marimea initiala
+	var div = document.getElementById ("text");
+	div.setAttribute ("style", "font-size: 100%");	
+}		
+</script>
+</head>
+<body>
+<div id="text">Web la nivel de client</div>
+<script type="text/javascript">
+var el = document.getElementById ("text");	// elementul care va raspunde la evenimente
+if (document.addEventListener) { 			// navigatoare care implementeaza DOM Events
+	el.addEventListener ("mouseover", schimbaFont, false);
+	el.addEventListener ("mouseout",  revineLaFontInitial, false);
+} else if (window.event) { 					// MSIE (versiuni vechi)
+	el.attachEvent ("mouseover", schimbaFont);
+	el.attachEvent ("mouseout",  revineLaFontInitial);
+} else { 									// un alt browser?
+	document.onmouseover = schimbaFont;
+	document.onmouseout  = revineLaFontInitial;
+}
+</script>
+<!-- la iesirea din pagina (vezi evenimentul 'unload') ar fi trebuit revenit
+     la comportamentul implicit; de investigat utilizarea metodei removeEventListener)
+-->     
+</body>
+</html>

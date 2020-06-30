@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:id="@+id/mylist_layout">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#f0f0f0">
+
+        <Button
+            android:background="@drawable/round_button"
+            android:textColor="#4BB3C9"
+            android:textSize="18sp"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="See stores info"
+            android:onClick="showStores">
+        </Button>
+
+        <!-- ADD button and Filter -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:background="#f0f0f0">
+            <Button
+                android:background="@drawable/round_button"
+                android:id="@+id/btn_add_product"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="#4BB3C9"
+                android:paddingHorizontal="50dp"
+                android:paddingVertical="10dp"
+                android:text="+ Add Item"
+                android:onClick="addProduct"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                android:layout_marginRight="10dp"></Button>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Filter"
+                    android:textSize="18sp"
+                    android:textColor="#000"></TextView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff">
+                    <Spinner
+                        android:id="@+id/btn_filter"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/TypeForFilter"
+                        android:textSize="28sp"
+                        style="@style/Widget.AppCompat.DropDownItem.Spinner">
+                    </Spinner>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Header -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#4BB3C9"/>
+        <LinearLayout
+            style="?android:attr/listSeparatorTextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:textColor="#f5c227">
+
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Category"></TextView>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Product"></TextView>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Amount"></TextView>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1">
+            </RelativeLayout>
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#4BB3C9"/>
+
+        <!-- the products list -->
+        <ListView
+            android:id="@+id/productsList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </ListView>
+    </LinearLayout>
+
+    <include layout="@layout/item_details_layout" />
+
+</RelativeLayout>

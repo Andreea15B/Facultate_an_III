@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+    <button id="formVisibilityBtn">Show/Hide form</button>
+    <form id="formular">
+      <br />
+      Select color:<br />
+      <input type="color" name="color" id="color" /><br />
+      Select size:<br />
+      <input type="number" name="size" id="size" min="1" max="50" /><br /><br />
+      <input type="submit" value="Submit" /><br />
+    </form>
+    <br />
+    <br />
+    <div id="panel">
+      <button data-color="url(#redGradient)" data-radius="10">red small</button>
+      <button data-color="pink" data-radius="15">pink</button>
+      <button data-color="url(#blueGradient)" data-radius="20">blue big</button>
+    </div>
+    <p>Selected: <span id="type"></span></p>
+
+    <svg height="600" width="500" id="pg">
+      <defs>
+        <radialGradient id="redGradient">
+          <stop offset="0%" stop-color="white" />
+          <stop offset="100%" stop-color="red" />
+        </radialGradient>
+      </defs>
+      <defs>
+        <radialGradient id="blueGradient">
+          <stop offset="0%" stop-color="white" />
+          <stop offset="100%" stop-color="blue" />
+        </radialGradient>
+      </defs>
+    </svg>
+
+    <canvas width="1000" height="1000" id="canvas"></canvas>
+    <script src="brad.js"></script>
+  </body>
+</html>

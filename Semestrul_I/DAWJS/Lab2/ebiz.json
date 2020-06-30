@@ -1,0 +1,37 @@
+{
+   "title" : "Produsul a fost adaugat in cos",
+   "type" : "product",
+   "lineId" : "13995919",
+   "products_count" : 20,
+   "datalayer" : {
+      "event" : "addToCart",
+      "ecommerce" : {
+         "currencyCode" : "RON",
+         "add" : {
+            "products" : [
+               {
+                  "name" : "Proiect Web cu aroma de inteligenta",
+                  "id" : 13995919,
+                  "price" : 10.68,
+                  "brand" : "FII",
+                  "category_id" : "1874",
+                  "department" : "Academic",
+                  "variant" : "",
+                  "quantity" : 1,
+                  "vendor" : "Tuxy",
+                  "resealed" : false,
+                  "promotion" : true
+               }
+            ]
+         }
+      }
+   },
+   "main" : {
+      "name" : "Proiect Web cu aroma de inteligenta",
+      "image" : "https:\/\/s1emagst.akamaized.net\/products\/2806\/2805105\/images\/res_e2b4a41017d24d57a092b839730ef16d_120x120_rgbh.jpg",
+      "id" : "13995919",
+      "price" : 10.68,
+      "old_price" : 12.04
+   },
+   "special_discount_badge" : 0
+}

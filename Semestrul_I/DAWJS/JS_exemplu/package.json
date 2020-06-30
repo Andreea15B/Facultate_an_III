@@ -1,0 +1,29 @@
+{
+  "name": "js_exemplu",
+  "version": "1.0.0",
+  "main": "exemplu_test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "users": [
+    {
+      "id": "1",
+      "username": "andreeabucataru",
+      "nume": "Andreea",
+      "surname": "Bucataru",
+      "gender": "female",
+      "url": "facebook.com/andreeabucataru"
+    },
+    {
+      "id": "2",
+      "username": "mariabulboaca",
+      "nume": "Maria",
+      "surname": "Bulboaca",
+      "gender": "female",
+      "url": "facebook.com/mariabulboaca"
+    }
+  ]
+}

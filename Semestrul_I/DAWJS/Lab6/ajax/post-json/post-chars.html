@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Redare taste apasate</title>
+</head>
+<body>
+<h1>Redare taste apasate (trimise si unei aplicatii pe server)</h1>
+
+<!-- aici vor fi introduse caractere de catre utilizator -->
+<textarea id="editor"></textarea>
+<!-- aici vor fi indicate tastele apasate -->
+<div id="tasteApasate">Taste: </div>	
+<script type="application/javascript">
+// Tratam evenimentul de apasare a unei taste	
+const trateazaEveniment = ev => {
+	// mesajul propriu-zis trimis serverului prin POST 
+	// atunci cand survine evenimentul
+	let msg = `{ "tasta": "${String.fromCharCode (ev.charCode)}", "data": "${Date.now()}" }`; 
+	// incapsulam o cerere POST
+	let request = new Request('post.php', {
+  		method: 'POST',
+  		body: JSON.stringify (msg), // convertim datele JSON in sir de caractere
+  		headers: {}					// n-avem campuri-antet
+	});
+	fetch(request) // promitem sa executam codul daca e succes...
+	    .then (response => {
+			 // verificam daca am primit date JSON de la server 
+			 let contentType = response.headers.get('Content-Type');
+    	 if (contentType && contentType.includes('application/json')) {
+    			return response.json();
+    	 };
+    	 throw new TypeError ('Datele primite nu-s JSON :(');
+  		})
+		// procesam efectiv datele
+  		.then (json => {
+  		  // cream un nod text care indica tasta apasata
+  			let elem = document.createTextNode (json.tasta);
+  			document.getElementById ('tasteApasate').appendChild (elem);
+  			// raportam datele primite si la consola browser-ului
+  			console.log (`Date JSON primite: tasta=${json.tasta}, data=${Date(json.data)}`); 
+  		})
+      .catch (error => { console.log (error); }); // a survenit o eroare
+};
+
+document.addEventListener ('keypress', trateazaEveniment);
+</script>
+</body>
+</html>

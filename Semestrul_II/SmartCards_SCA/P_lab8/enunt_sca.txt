@@ -1,0 +1,17 @@
+Un lant de mall-uri ofera clientilor sai un card de cumparaturi. Atunci cand alimenteaza cardul de cumparaturi,
+ la fiecare 20 lei, clientii primesc 1 punct de loialitate. Un punct de loialitate valoreaza 1 leu. Pentru fiecare 100 
+de puncte de loialitate acumulate, clientii mai primesc inca 5 puncte. Pentru siguranta cumparatorilor, tranzactiile de creditare/debitare sunt limitate la 600 de lei. Balanta maxima a contului este 6000 lei.
+Daca clientul doreste sa afle balanta contului, atunci aceasta va fi returna suma in bani, cat si numarul de puncte 
+de loialitate, intr-o singura comanda.
+Daca clientul cumpara un produs, mai intai se vor consuma punctele de loialitate, apoi daca punctele de loialitate
+ nu sunt suficiente, se vor consuma bani.
+
+Utilizati Wallet sample pe care sa il adaptati la cerintele proiectului.
+Orice operatiune se poate realiza numai in cazul in care pin-ul a fost verificat cu success.
+Realizati cazuri de test potrivite pentru a testa functionalitatea aplicatiei cu cerintele de mai sus. Pentru testare,
+ loyalty.scr trebuie sa contina numai testele relevante pentru aplicatie.
+
+
+Trebuie sa trimiteti codul java cu comentariile clare asupra a ceea ce ati facut si print screen cu outputul din 
+consola din care sa reiasa comenzile de test si rezultatele obtinute. Comenzile de test trebuie sa fie insotite de
+ comentarii asupra cazurilor de test facute.

@@ -1,0 +1,5 @@
+Pentru un singur client.
+KC, generat la client, poate fi hardcodat.
+Resp este abort sau yes.
+Trebuie sa verificam semnaturile pe masura ce le primim.
+Semnare inseamna aplicare de RSA (cu hash).

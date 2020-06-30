@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <item android:id="@+id/new_product"
+            android:title="Add new product"/>
+        <item android:id="@+id/hi"
+            android:title="Say Hi" />
+        <item android:id="@+id/send_sms"
+            android:title="Send SMS"/>
+        <item android:id="@+id/settings"
+            android:title="Settings"/>
+    </group>
+</menu>

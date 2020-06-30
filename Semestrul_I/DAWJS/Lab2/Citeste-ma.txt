@@ -1,0 +1,33 @@
+Acest director include o serie de exemple de programe JavaScript.
+
+* vector.js      -- un program ce exemplifica valorile pe care le pot lua indecsii unui tablou (vector)
+* inverseaza-sir-unicode.js -- folosirea functiilor recursive si suportul pentru Unicode
+* media.js       -- ilustrarea utilizarii functiilor anonime 
+* proprietati.js -- un exemplu privind iterarea unor proprietati asociate unui obiect
+* animale.js     -- specifica modul de creare a unei pseudo-clase in JavaScript 5
+* animale2.js    -- exemplifica 2 concepte: prototype + hoisting
+* animale3.js    -- ilustreaza maniera de cautare a metodelor in cadrul lantului de proprietati
+* greutati.js    -- exemplifica maniera de utilizare a functiilor ca parametri
+* contor.js      -- specifica modul de folosire a incapsularii
+* json.js        -- ilustreaza utilizarea obiectului predefinit JSON 
+                    pentru (de)serializarea datelor
+* ebiz.json      -- un exemplu de document JSON folosit pentru interschimb de date 
+                    referitoare la comert electronic (inspirat de aplicatia eMAG);
+                    ce probleme de modelare pot fi remarcate?
+
+Pentru experimentare, recomandam utilizarea mediului JS Bin: http://jsbin.com/
+
+De asemenea, se poate recurge la instrumentele:
+* Online JavaScript Tutor -- http://www.pythontutor.com/visualize.html#py=js
+* Object Playground -- http://www.objectplayground.com/
+
+Suplimentar, a se studia documentatiile + exemplele oferite de:
+* https://developer.mozilla.org/docs/Web/JavaScript/Guide
+* https://github.com/sorrycc/awesome-javascript
+
+Aceste programe au fost scrise de Sabin-Corneliu Buraga (2007, 2011, 2012, 2015-2018),
+putand fi utilizate sub auspiciile prevazute de 
+Creative Commons Attribution-NonCommercial-ShareAlike 4.0 License: 
+http://creativecommons.org/licenses/
+
+Ultima actualizare: 29 noiembrie 2018

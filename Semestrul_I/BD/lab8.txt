@@ -1,0 +1,50 @@
+1.
+SELECT an, COUNT(*) FROM studenti GROUP BY an;
+
+2.
+SELECT an, grupa, COUNT(*) FROM studenti GROUP BY an, grupa ORDER BY an, grupa ASC;
+
+3.
+SELECT an, grupa, COUNT(*) AS "Nr studenti", COUNT(bursa) AS "Nr studenti bursieri" FROM studenti GROUP BY an, grupa;
+
+4.
+SELECT SUM(bursa) FROM studenti;
+
+5.
+SELECT AVG(bursa) FROM studenti;
+
+6.
+SELECT valoare, COUNT(valoare) FROM note GROUP BY valoare ORDER BY valoare DESC;
+
+7.
+SELECT TO_CHAR(data_notare, 'day'), COUNT(valoare) FROM note GROUP BY TO_CHAR(data_notare, 'day') ORDER BY COUNT(valoare) DESC;
+
+8.
+SELECT TO_CHAR(data_notare, 'D'), COUNT(valoare) FROM note GROUP BY TO_CHAR(data_notare, 'D') ORDER BY TO_CHAR(data_notare, 'D') ASC;
+
+9.
+SELECT nume, AVG(valoare) AS "Medie" FROM studenti NATURAL JOIN note GROUP BY nume ORDER BY "Medie" DESC;
+
+10.
+SELECT nume, AVG(valoare) AS "Medie" FROM studenti s LEFT JOIN note n ON n.nr_matricol=s.nr_matricol GROUP BY nume ORDER BY "Medie" DESC;
+
+11.
+SELECT nume, NVL(AVG(valoare),0) AS "Medie" FROM studenti s LEFT JOIN note n ON n.nr_matricol=s.nr_matricol GROUP BY nume ORDER BY "Medie" DESC;
+
+12.
+SELECT nume, NVL(AVG(valoare),0) AS "Medie" FROM studenti s LEFT JOIN note n ON n.nr_matricol=s.nr_matricol GROUP BY nume HAVING AVG(valoare)>8 ORDER BY "Medie" DESC;
+
+13.
+SELECT nume, MAX(valoare), MIN(valoare), AVG(valoare) FROM studenti NATURAL JOIN note WHERE valoare>=7 GROUP BY nume;
+
+14.
+SELECT nume, AVG(valoare) FROM studenti NATURAL JOIN note GROUP BY nume HAVING COUNT(valoare)>=4;
+
+15.
+SELECT nume, AVG(valoare) FROM studenti NATURAL JOIN note WHERE TRIM(grupa)='A2' AND an=3 GROUP BY nume;
+
+16.
+SELECT MAX(AVG(valoare)) FROM note GROUP BY valoare;
+
+17.
+SELECT titlu_curs, MIN(valoare), MAX(valoare) FROM cursuri NATURAL JOIN note GROUP BY titlu_curs;

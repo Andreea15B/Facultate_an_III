@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Evenimente JS</title>
+</head>
+<body>
+  <form>
+     <textarea id="editor"></textarea>
+  </form>
+</body>
+<script type="application/javascript">
+/* exemplu ES6 de acces la date referitoare la un eveniment 
+   -- adaptare dupa https://github.com/bpesquet/thejsway/blob/master/manuscript/chapter16.md
+*/ 
+const infoEv = e => { console.log(`Eveniment: ${e.type}\n
+  Caracter: ${String.fromCharCode(e.charCode)}\n
+  Element țintă al evenim.: ${e.target}\n
+  Ținta curentă: ${e.currentTarget}`);
+};  
+document.addEventListener ("keypress", infoEv);
+</script>
+</html>

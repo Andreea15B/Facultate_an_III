@@ -1,0 +1,35 @@
+Ex1:
+Sa se creeze un formular care permite adaugarea de tipuri de glob de catre utilizator.
+Formularul va contine: culoare, marime.
+Formularul va fi initial ascuns. La apasarea unui buton el va fi ascuns/afisat.
+Tipul de glob va fi adaugat la lista de optiuni.
+
+Ex2:
+Sa se salveze tipurile de glob adaugate de utilizator folosind localStorage.
+La incarcarea paginii sa fie incluse in pagina tipurile de globuri adugate anterior de utilizator.
+
+Ex3:
+Sa se ofere posibilitatea folosirii unei imagini pentru glob. Aceasta se va realiza folosind input de tip file. Cand imaginea este aleasa, utilizatorul va vedea imaginea inainte de a salva tipul de glob.
+
+Ex4:
+Sa se ofere posibilitatea stergerii unui tip de glob.
+
+
+
+În CSS:
+display: none --> ascunderea unui element
+display: block --> afișarea unui element
+
+el.style.display = "none" --> manipularea stilului unui element
+el.classList --> de tip array
+
+f.elements['inputName'].value --> accesarea elementelor din formular
+
+Pentru formular, evenimentul este submit.
+
+Pentru adăugarea unui nou buton, cu appendChild și createElement sau string-uri cu backticks (``), apoi innerHtml.
+Sau cu template.
+
+localStorage:
+setItem(key, value) --> value este un string (trebuie serializată cu JSON.stringify)
+getItem(key) --> rezultatul obținut e un string și facem JSON.parse (deserializare)

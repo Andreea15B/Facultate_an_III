@@ -1,0 +1,87 @@
+<html>
+  <body>
+    <div>
+      <canvas id="canvasContainer" width="600" height="600"></canvas>
+    </div>
+    <div>
+      <button id="red" onclick="change('red')">Red globe</button>
+      <button id="blue" onclick="change('blue')">Blue globe</button>
+    </div>
+    <script type="application/javascript">
+      class Glob {
+        constructor(radius, color, positionX, positionY) {
+          this.radius = radius;
+          this.color = color;
+          this.positionX = positionX;
+          this.positionY = positionY;
+        }
+      }
+
+      globuri = [];
+      const buttonRed = document
+        .getElementById("red")
+        .addEventListener("click", event => {
+          const globRosu = new Glob(10, "red", 3, 4);
+          globuri.push(globRosu);
+        });
+      const buttonBlue = document
+        .getElementById("blue")
+        .addEventListener("click", event => {
+          const globBlue = new Glob(10, "blue", 3, 4);
+          globuri.push(globBlue);
+        });
+
+      //console.log(globuri);
+
+      var canvas = document.getElementById("canvasContainer");
+      var context = canvas.getContext("2d");
+
+      var img = new Image();
+
+      fetch(
+        "https://upload.wikimedia.org/wikipedia/commons/9/9e/Emojione_1F332.svg"
+      )
+        .then(data => data)
+        .then(text => {
+          img.src = text.url;
+        });
+
+      img.onload = function() {
+        context.drawImage(img, 10, 10);
+      };
+
+      canvas.addEventListener("click", drawRedCircle);
+
+      function change(tip) {
+        if (tip == "red") {
+          canvas.addEventListener("click", drawRedCircle);
+        } 
+        if (tip == "blue") {
+          canvas.addEventListener("click", drawBlueCircle);
+        }
+      }
+
+      function drawRedCircle(e) {
+        context.save();
+        var radius = 4;
+        cursorX = e.offsetX;
+        cursorY = e.offsetY;
+        context.beginPath();
+        context.arc(cursorX, cursorY, radius, 0, 2 * Math.PI, false);
+        context.fillStyle = "red";
+        context.fill();
+      }
+
+      function drawBlueCircle(e) {
+        context.save();
+        var radius = 4;
+        cursorX = e.offsetX;
+        cursorY = e.offsetY;
+        context.beginPath();
+        context.arc(cursorX, cursorY, radius, 0, 2 * Math.PI, false);
+        context.fillStyle = "blue";
+        context.fill();
+      }
+    </script>
+  </body>
+</html>

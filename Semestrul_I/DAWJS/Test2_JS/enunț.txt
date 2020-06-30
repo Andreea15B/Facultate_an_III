@@ -1,0 +1,2 @@
+Pe baza modulului jsdom <https://github.com/jsdom/jsdom>, sa se realizeze un instrument Node.js pentru procesarea listei de standarde 
+oferite de Consortiul Web <https://www.w3.org/TR/> si redarea rezumatului acestora (denumire, data, lista editori, tag-uri, status (profile)), in ordine cronologica.

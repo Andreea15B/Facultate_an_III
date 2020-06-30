@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/page_list"
+        android:icon="@drawable/ic_shoppingcart_icon"
+        android:title="Your list"/>
+    <item
+        android:id="@+id/page_stores"
+        android:icon="@drawable/ic_store_icon"
+        android:title="Stores"/>
+</menu>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="Sync information">
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="perform_sync"
+            android:title="Enable Auto Sync"
+            android:summary="Enable or disable data sync"/>
+        <ListPreference
+            android:defaultValue="30"
+            android:entries="@array/updateInterval"
+            android:entryValues="@array/updateIntervalValues"
+            android:key="sync_interval"
+            android:title="Sync Interval"
+            android:summary="Define how often sync will be performed"
+            android:dependency="perform_sync"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Personal Information">
+
+        <EditTextPreference
+            android:key="full_name"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Full name"
+            android:summary="Enter your full name"
+            android:dialogTitle="Enter your full name"
+            android:dialogMessage="Enter full name"
+            android:inputType="textCapWords"/>
+        <EditTextPreference
+            android:key="email_address"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Email address"
+            android:summary="Enter your email address"
+            android:dialogTitle="Enter your email address"
+            android:dialogMessage="Enter your email address"
+            android:inputType="textEmailAddress"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Preference category">
+
+        <ListPreference
+            android:defaultValue="white"
+            android:entries="@array/colors"
+            android:entryValues="@array/colorValues"
+            android:key="background"
+            android:title="Background"
+            android:summary="Change the background"/>
+    </PreferenceCategory>
+</PreferenceScreen>

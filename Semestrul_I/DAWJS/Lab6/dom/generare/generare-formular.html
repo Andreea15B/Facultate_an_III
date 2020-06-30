@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head>
+<title>Generare dinamica a unui formular Web</title>
+<meta charset="utf-8" />
+<style>
+.interactiv {
+    border-style: dotted;
+    border-width: 1px;
+    border-color: gray;
+    width: 20em;
+    padding: 1em;
+    margin: 0.2em;
+    font-family: sans-serif;
+}
+label {
+    width: 50%;
+    display: block;
+    float: left;
+    margin-right: 0.3em;
+}
+</style>
+<script type="text/javascript">
+function adaugaControl (element, tip, nume, explicatie) {
+    // vom crea un element <input> atasandu-i atributele esentiale
+    let control = document.createElement ('input');
+    control.type = tip;
+    control.id = nume;
+    control.name = nume;
+
+    // vom adauga si o eticheta explicativa
+    let eticheta = document.createElement ('label');
+    eticheta.htmlFor = nume;
+    eticheta.innerHTML = explicatie;
+    // vom altera diverse stiluri CSS
+    eticheta.style.background = 'lightgray';
+    eticheta.style.color = '#333';
+    eticheta.style.padding = '0.2em';
+
+    // vom plasa elementele <label> si <input> intr-un container 
+    let container = document.createElement ('div');
+    container.className = "interactiv";
+    container.appendChild (eticheta);
+    container.appendChild (control);
+
+    // vom adauga nodul container la elementul dat ca parametru
+    element.appendChild (container);
+}
+</script>
+</head>
+<body>
+<form id="unFormular">
+<!-- corpul formularului va fi generat via JavaScript -->
+</form>
+<script type="text/javascript">
+// preluam elementul de tip formular
+let formular = document.getElementById ('unFormular');
+// adaugam controalele de interactiune dorite
+adaugaControl (formular, 'text', 'nume', 'Numele meu: ');
+adaugaControl (formular, 'password', 'parola', '<em>Codul secret</em>: ');
+adaugaControl (formular, 'checkbox', 'particip', 'Particip? ');
+for (let an = 2018; an <= 2020; an++) {
+    adaugaControl (formular, 'radio', 'an', 'Web Hackathon ' + an);
+}
+</script>
+</body>
+</html>

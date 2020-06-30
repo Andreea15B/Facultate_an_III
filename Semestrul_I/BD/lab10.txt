@@ -1,0 +1,23 @@
+1.
+SELECT nume, prenume FROM studenti s1 WHERE EXISTS (SELECT 'BD' FROM studenti s2 WHERE s1.data_nastere < s2.data_nastere AND s1.an = s2.an);
+
+2.
+SELECT s1.nume, s1.prenume, AVG(valoare) FROM studenti s1 NATURAL JOIN note n1 GROUP BY nr_matricol, s1.nume, s1.prenume, s1.an 
+HAVING NOT EXISTS (SELECT 'BD' FROM studenti s2 NATURAL JOIN note n2 GROUP BY nr_matricol, an HAVING AVG(n2.valoare) > AVG(n1.valoare) AND s1.an = an);
+
+3.
+SELECT s1.nume, s1.prenume, AVG(n1.valoare), s1.an, s1.grupa FROM studenti s1 JOIN note n1 ON s1.nr_matricol = n1.nr_matricol 
+GROUP BY s1.nume, s1.prenume, s1.grupa, s1.an, n1.nr_matricol HAVING NOT EXISTS (SELECT AVG(n2.valoare) FROM note n2 JOIN studenti s2 ON n2.nr_matricol = s2.nr_matricol 
+WHERE s1.nr_matricol != s2.nr_matricol AND s1.grupa = s2.grupa AND s1.an = s2.an GROUP BY n2.nr_matricol HAVING AVG(n1.valoare) < AVG(n2.valoare));
+
+4.
+SELECT DISTINCT s1.nume, s1.prenume, s1.an, s1.grupa FROM studenti s1 NATURAL JOIN note n1 WHERE EXISTS (SELECT n2.nr_matricol FROM note n2 NATURAL JOIN studenti s2 
+WHERE n1.nr_matricol != n2.nr_matricol AND s1.an = s2.an AND n1.valoare = n2.valoare AND n1.id_curs = n2.id_curs);
+
+5.
+SELECT nume, prenume, grupa FROM studenti s1 WHERE NOT EXISTS (SELECT '1' FROM studenti s2 WHERE s1.an = s2.an AND s1.grupa = s2.grupa AND s1.nr_matricol != s2.nr_matricol);
+
+6.
+SELECT nume, prenume FROM profesori p1 NATURAL JOIN didactic d1 JOIN note n1 ON n1.id_curs = d1.id_curs GROUP BY p1.nume, p1.prenume, p1.id_prof 
+HAVING AVG(valoare) IN (SELECT AVG(n2.valoare) FROM note n2 NATURAL JOIN didactic d2 JOIN profesori p2 ON p2.id_prof = d2.id_prof WHERE p1.id_prof = p2.id_prof
+GROUP BY p2.id_prof);

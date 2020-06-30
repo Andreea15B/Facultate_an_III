@@ -1,0 +1,35 @@
+Descrierea mediului de lucru utilizat:
+- Am folosit un sistem Linux Mint 19 Cinnamon 3.8.9, în mod dual-boot.
+- Am instalat biblioteca OpenSSL urmărind pașii descriși la începutul temei.
+La încercarea executării comenzii "make" am primit o eroare "fatal error: assert.h: No such file or directory".
+Pentru a o rezolva, am găsit executat următoarele comenzi găsite pe site-ul https://stackoverflow.com/questions/34466969/header-files-are-not-found-by-gcc :
+sudo apt-get install build-essential
+sudo apt-get install libusb-dev
+- Ca IDE am folosit Visual Studio Code, iar ca limbaj de programare am folosit C.
+
+Makefile:
+- Pentru rularea programelor se folosește comanda make din terminal.
+- Am aflat ce este un makefile și cum să fac unul de pe site-ul https://opensource.com/article/18/8/what-how-makefile.
+- Pentru compilare am folosit librăria criptografică -lcrypto.
+
+Problema 1:
+- Programul citește din fișierul plaintext.txt un text pe care îl criptează și îl pune în fișierul criptotext.txt.
+- Pentru criptare și decriptare am folosit o parte din cod de pe site-ul https://wiki.openssl.org/index.php/EVP_Symmetric_Encryption_and_Decryption.
+- Modurile de criptare folosite sunt ECB și CBC, alegere care se face introducând în consolă numărul 1 sau 2, asignat variabilei mode.
+- Pentru găsirea cheii, având numai criptotextul, am folosit brute force pe dicționarul din fișierul word_dictionary.txt.
+Am luat fiecare cuvânt din dicționar care are maxim 16 caractere, am decriptat criptotextul cu acel cuvânt, apoi am numărat câte caractere non-literale se află în textul rezultat.
+Dacă sunt destul de multe caractere non-literale înseamnă că acel cuvânt este cheia folosită pentru criptare.
+- Pentru convertirea cheii în hexa am scris o funcție unsigned char *convertToHex(unsigned char *key).
+- Pentru testare, am luat ca plaintext "The quick brown fox jumps over the lazy dog" cu cheia "cryptanalysis" și vectorul de inițializare iv = "\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0a\x0b\x0c\x0d\x0e\x0f".
+Cheia a fost găsită la iterația 5785.
+
+Problema 2:
+- Programul citește din fișierele file1.txt și file2.txt două texte care diferă doar cu un caracter și calculează funcțiile lor hash cu algoritmii MD5 și SHA256.
+Rezultatele sunt puse în fișierele h1_md5.txt, h2_md5.txt, h1_sha256.txt, h2_sha256.txt.
+Programul compară rezultatele pentru fiecare algoritm în parte și afișează numărul de octeți identici.
+- Mărimea textelor este obținută cu ajutorul funcțiilor fseek și ftell, iar textul este citit cu funcția fread.
+- Pentru implementarea funcțiilor hash am folosit cod de pe site-ul https://wiki.openssl.org/index.php/EVP_Message_Digests.
+- În fișierul makefile am folosit codul de la începutul temei, însă am întâlnit o eroare "undefined reference to EVP_MD_CTX_new".
+Am modificat INC=/usr/local/include/openssl/ și LIB=/usr/local/lib/ deoarece cele două foldere s-au instalat pe o altă cale.
+- Pentru testare, primul text este "The brown fox jumps over the lazy dog." și al doilea "The brown fox jumps over the lazy dogs.".
+Se observă că niciun hash nu are octeți în comun. 

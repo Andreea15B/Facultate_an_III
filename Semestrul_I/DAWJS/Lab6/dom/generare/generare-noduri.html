@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Generare de cod HTML cu JavaScript</title>
+	<meta charset="utf-8" />
+	<script type="application/javascript">
+	// functie care intoarce un numar aleatoriu intreg
+	function genereazaIntregAleatoriu (numar) {
+		return Math.floor (Math.random() * numar);
+	}
+	// functie care genereaza un numar de elemente HTML
+	// pe care le adauga elementului identificat prin 'identificator'
+	function genereazaElemente (numarElem, numeElem, identificator) {
+    	for (var it = 0; it < numarElem; it++) {
+    		// cream un element specific
+        	var element = document.createElement (numeElem);
+        	// ...si-i atasam un nod text
+        	var text = document.createTextNode ("Salut, lumea #" + 
+        		 genereazaIntregAleatoriu (numarElem) + "...");
+        	element.appendChild (text);
+        	// adaugam nodul creat prin program
+        	// elementului HTML cu id avand valoarea argumentului 'identificator'
+        	document.getElementById (identificator).appendChild (element);
+    	}
+	}
+	// functia apelata la aparitia evenimentului de inserare a unui nod
+	// e.g., se recurge la appendChild()
+	function inserareNod (eveniment) {
+		console.log ("S-a adaugat un nod nou: " + eveniment.target.nodeName);
+	}
+          
+</script>
+</head>
+<body>
+	<!-- acest element va include cod generat dinamic -->
+    <div id="lumi"></div>
+    <h1 id="continut"></h1>
+    <!-- apelam functia JavaScript de creare a paragrafelor 
+         prin alterarea DOM-ului asociat documentului -->       
+    <script type="application/javascript">
+    	// adaugam o functie de tratare a evenimentului de inserare a unui nod
+    	document.addEventListener ("DOMNodeInserted", inserareNod, false);
+        genereazaElemente (3, "div", "continut");
+        genereazaElemente (2, "p", "lumi");
+    </script>
+</body>
+</html>

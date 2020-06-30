@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Un exemplu de tratare a evenimentelor vizand tastatura</title>
+<script type="text/javascript">
+  // verifica, pe baza unei expresii regulate, 
+  // daca tasta apasata a fost litera
+  // (adaptare dupa documentatiile Mozilla)
+  function eIntrodusaLitera (camp, eveniment) {
+    return eveniment.charCode === 0 || 	  
+	  /[a-zA-Z]/.test(String.fromCharCode(eveniment.charCode));
+  }
+</script>
+</head>
+
+<body>
+<form name="formular">
+<p>Introduceti doar litere: 
+<!-- daca functia de tratare a evenimentului returneaza false, 
+     actiunea predefinita va fi ignorata
+     (in cazul de mai jos, se inhiba inserarea caracterelor 
+	   diferite de litere si operatia 'paste')
+-->
+<input type="text" name="litere" 
+       onkeypress="return eIntrodusaLitera(this, event);" 
+	     onpaste="return false;" />
+</p>
+</form>
+</body>
+</html>

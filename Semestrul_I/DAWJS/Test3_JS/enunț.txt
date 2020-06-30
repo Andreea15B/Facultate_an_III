@@ -1,0 +1,2 @@
+Să se calculeze fibonacci(N). Funcţia menţine un cache în localStorage şi va returna imediat acea valoare dacă se regăsește în cache. 
+N va fi preluat de la utilizator. Rezultatul va fi adăugat ca un nou paragraf în pagina HTML cu formatul: fib(N)=55.

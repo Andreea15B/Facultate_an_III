@@ -1,0 +1,49 @@
+Acest director include exemplificari JavaScript in contextul browser-ului Web.
+
+Directorul generare/ ofera exemple privind manipularea arborelui DOM:
+* generare-formular.html 
+  - include cod JavaScript pentru generarea dinamica a campurilor unui formular Web;
+    varianta online poate fi studiata la <https://jsfiddle.net/busaco/0wvn3fha/>
+* generare-noduri.html   
+  - ilustreaza atat generarea dinamica de cod HTML,
+    cat si tratarea evenimentelor de modificare a arborelui DOM	
+* tabel.js    
+  - exemplifica modul de creare de constructii HTML (elemente si atribute)
+* creare-tabel.html  
+  - pagina Web "umpluta" cu continut generat dinamic de programul din 'tabel.js'
+
+Directorul evenimente/ ilustreaza maniera de tratare a evenimentelor de interactiune:
+* clicks.html
+  - exemplu de tratare a evenimentelor "click" si "dblclick"
+* mouseover-mouseout.html 
+  - trateaza evenimente de interactiune cu mouse-ul (aici: "mouseover" si "mouseout")  
+* keypress.html 
+  - ofera informatii privitoare la un eveniment (aici: "keypress")  
+* keypress-paste.html 
+  - exemplifica tratarea evenimentelor privind tastatura (aici: "keypress" si "paste") 
+    (dupa un exemplu oferit de MDN -- Mozilla Developer Network)
+
+Directorul traversare/ demonstreaza parcurgerea recursiva a unui arbore DOM   
+* traversare.js   
+  - specificarea unei functii de tip closure pentru traversare
+* traversare.html 
+  - document HTML parcurs de programul de mai sus
+
+Directorul treewalker/ ilustreaza folosirea obiectului TreeWalker 
+pentru a parcurge si filtra nodurile arborelui DOM al unui document HTML
+varianta online poate fi experimentata la <https://jsfiddle.net/busaco/ofm958vr/>:
+* calator.js
+  - preluarea unor noduri de tip Element dintr-un DOM
+* doc.html
+  - documentul HTML de test
+
+Pentru testare, se poate recurge la JSFiddle <https://jsfiddle.net/> sau 
+la orice navigator Web modern.
+
+In cazul in care nu apar alte precizari, aceste fisiere au fost scrise de 
+Sabin-Corneliu Buraga (2007, 2009--2012, 2014, 2017--2019), 
+putand fi utilizate sub auspiciile prevazute de 
+Creative Commons Attribution-NonCommercial-ShareAlike 4.0 License: 
+https://creativecommons.org/licenses/
+
+Ultima actualizare: 07 noiembrie 2019

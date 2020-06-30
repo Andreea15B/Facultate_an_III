@@ -1,0 +1,58 @@
+1.
+CREATE SEQUENCE s_id_curs INCREMENT BY 1 START WITH 1;
+INSERT INTO cursuri VALUES(s_id_curs.NEXTVAL, 'Inv. automata', 3, 1, 5);
+
+2.
+studentii care au macar o nota de 10:  SELECT nume FROM studenti NATURAL JOIN note WHERE valoare=10 GROUP BY nume;
+UPDATE studenti SET bursa=500 WHERE nume IN (SELECT nume FROM studenti NATURAL JOIN note WHERE valoare=10 GROUP BY nume);
+
+3.
+UPDATE studenti s1 SET bursa = 100*(SELECT AVG(valoare) FROM studenti s2 NATURAL JOIN note WHERE s1.nume=s2.nume GROUP BY nume);
+
+4.
+DELETE FROM studenti WHERE nr_matricol IN (SELECT nr_matricol FROM studenti NATURAL JOIN note GROUP BY nr_matricol HAVING COUNT(valoare)=0);
+
+5.
+CREATE TABLE stud (nume, prenume, bursa, media) AS (SELECT nume, prenume, bursa, AVG(valoare) FROM studenti NATURAL JOIN note GROUP BY nume, prenume, bursa);
+
+Rulare script de creare:  @ D:\Facultate\An_III\BD\script_creare.sql
+
+6.
+ALTER TABLE studenti ADD CONSTRAINT pk_studs PRIMARY KEY (nr_matricol);
+ALTER TABLE profesori ADD CONSTRAINT pk_profs PRIMARY KEY (id_prof);
+ALTER TABLE cursuri ADD CONSTRAINT pk_cursuri PRIMARY KEY (id_curs);
+
+7.
+ALTER TABLE note ADD CONSTRAINT fk_note FOREIGN KEY (nr_matricol) REFERENCES studenti(nr_matricol) ON DELETE CASCADE;
+ALTER TABLE didactic ADD CONSTRAINT fk_didactic FOREIGN KEY (id_prof) REFERENCES profesori(id_prof) ON DELETE CASCADE;
+ALTER TABLE didactic ADD CONSTRAINT fk_didactic1 FOREIGN KEY (id_curs) REFERENCES cursuri(id_curs) ON DELETE CASCADE;
+
+8.
+ALTER TABLE note ADD CONSTRAINT mai_putin_de_o_nota_per_curs UNIQUE (nr_matricol, id_curs);
+
+9.
+ALTER TABLE note ADD CONSTRAINT val_nota CHECK (valoare>=1 AND valoare<=10);
+
+---- Scrieți o comandă care să șteargă toți studenții ce au măcar o materie nepromovată:
+DELETE FROM studenti WHERE nr_matricol IN (SELECT nr_matricol FROM note GROUP BY nr_matricol HAVING AVG(valoare)<5);
+
+---- Scrieți o comandă de actualizare care alocă burse egale cu 50*media pt studenții care nu au nicio restanță (nota<5):
+UPDATE studenti s SET bursa=50*(SELECT AVG(valoare) FROM note n WHERE s.nr_matricol=n.nr_matricol GROUP BY nr_matricol) WHERE s.nr_matricol IN (SELECT nr_matricol FROM note WHERE valoare<5);
+
+---- Cei mai buni trei studenti de la BD. In caz de egalitate, ordonare alfabetica.
+SELECT * FROM (SELECT nume, prenume, valoare FROM studenti s NATURAL JOIN note n JOIN cursuri c ON c.id_curs=n.id_curs WHERE c.titlu_curs = 'BD' ORDER BY n.valoare DESC) WHERE ROWNUM<4;
+
+---- studentii cu cea mai mare medie
+SELECT nume, prenume, AVG(valoare) FROM studenti NATURAL JOIN note GROUP BY nume, prenume HAVING AVG(valoare) = (SELECT MAX(AVG(valoare)) FROM studenti NATURAL JOIN note GROUP BY nume);
+
+---- cate grupe diferite exista
+SELECT COUNT(*) FROM (SELECT DISTINCT grupa FROM studenti);
+
+
+
+
+
+
+
+
+

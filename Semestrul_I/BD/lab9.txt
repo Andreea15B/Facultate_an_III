@@ -1,0 +1,26 @@
+1.
+SELECT nume FROM studenti WHERE bursa = (SELECT MAX(bursa) FROM studenti);
+ 
+2.
+SELECT nume FROM studenti WHERE (grupa, an) IN (SELECT grupa, an FROM studenti WHERE nume LIKE 'Arhire') AND nume NOT LIKE 'Arhire';
+
+3.
+SELECT nume FROM studenti NATURAL JOIN note WHERE (valoare, grupa, an) IN (SELECT MIN(valoare), grupa, an FROM note NATURAL JOIN studenti GROUP BY grupa, an);
+
+4.
+SELECT nume, AVG(valoare) FROM studenti NATURAL JOIN note GROUP BY nr_matricol, nume HAVING AVG(valoare) > (SELECT AVG(valoare) FROM note);
+
+5.
+SELECT * FROM (SELECT nume, AVG(valoare) FROM studenti NATURAL JOIN note GROUP BY nr_matricol, nume ORDER BY AVG(valoare) DESC) WHERE ROWNUM <= 3;
+
+6.
+SELECT nume, AVG(valoare) FROM studenti NATURAL JOIN note GROUP BY nume, nr_matricol HAVING AVG(valoare) = (SELECT MAX(AVG(valoare)) FROM studenti NATURAL JOIN note GROUP BY nr_matricol);
+
+7.
+SELECT s.nume, s.prenume FROM studenti s NATURAL JOIN note n WHERE (n.valoare, n.id_curs) = (SELECT n.valoare, n.id_curs FROM studenti s NATURAL JOIN note n JOIN cursuri c ON n.id_curs = c.id_curs AND s.nume = 'Ciobotariu' AND s.prenume = 'Ciprian' AND c.titlu_curs = 'Logica') AND (s.nume <> 'Ciobotariu' OR s.prenume <> 'Ciprian');
+
+8.
+SELECT prenume FROM studenti WHERE (prenume, 5) IN (SELECT prenume, ROWNUM FROM (SELECT prenume FROM studenti ORDER BY 1));
+
+9.
+SELECT nume, suma FROM (SELECT tabel.*, ROWNUM as nr_coloana FROM (SELECT nume, SUM(valoare*credite) AS suma FROM studenti JOIN note ON studenti.nr_matricol = note.nr_matricol JOIN cursuri ON note.id_curs = cursuri.id_curs GROUP BY studenti.nr_matricol, nume) tabel) WHERE nr_coloana = 3;
